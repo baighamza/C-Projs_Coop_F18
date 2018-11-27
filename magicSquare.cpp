@@ -20,40 +20,48 @@ void oddArray(int** magicSquare, int size)
   int otherSide = size/2 + 1;
   int num = 1;
   int i = 0;
+  int oldPositionRow,oldPositionCol;
           
           for(int x = firstIndex; x <= size; x++)
           {
               //first row
               if(i < 0)
               {
+                
                   i = otherSide;
+                  oldPositionRow = i;
+                  oldPositionCol = x;
                   magicSquare[i][x] = num;
                   i--;
                   num++;
-                  break;
                   
               }
-              if (x > otherSide)
+              else if (x > otherSide)
               {
+                  oldPositionRow = i;
                   x = 0;
+                  oldPositionCol = x;
                   magicSquare[i][x] = num;
                   i--;
                   num++;
-                  break;
+                 
               }
-              if(magicSquare[i][x] != 0)
+              else if(magicSquare[i][x] != 0)
               {
+                  i = oldPositionRow;
+                  x = oldPositionCol;
                   i++;
+                  //x--;
                   magicSquare[i][x] = num;
                   num++;
-                  break;
               }
               else
               {
+                  oldPositionRow = i;
+                  oldPositionCol = x;
                   magicSquare[i][x] = num;
                   num++;
                   i--;
-                  break;
               }
           }
       
